@@ -20,6 +20,7 @@ namespace Console.FluentInterfaceDesign
 {
     /* Imports from NET Framework */
     using System;
+    using System.ComponentModel;
 
     public class Program
     {
@@ -56,6 +57,15 @@ namespace Console.FluentInterfaceDesign
         {
             Console.Clear();
 
+            FluentContact obj = new FluentContact();
+
+            obj.NameOfTheContact("Gerhard Ahrens")
+                    .BornOf(new DateTime(1960,6,28))
+                    .DeveloperOf("C#")
+                    .Salery(5000)
+                    .StateOf(true);
+            obj.ShowDetails();
+
             Console.WriteLine("Mit einer beliebigen Taste zurück zum Menü!");
             Console.ReadKey();
         }
@@ -66,6 +76,69 @@ namespace Console.FluentInterfaceDesign
 
             Console.WriteLine("Mit einer beliebigen Taste zurück zum Menü!");
             Console.ReadKey();
+        }
+    }
+
+    public class Contact
+    {
+        #region Properties
+        public Guid Id { get; set; }
+
+        public string FullName { get; set; }
+
+        public string Developer { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
+
+        public float Gehalt { get; set; }
+
+        public bool Status { get; set; } 
+
+        #endregion Properties
+    }
+
+    public class FluentContact
+    {
+        private Contact contact = new Contact();
+
+        public FluentContact NameOfTheContact(string FullName)
+        {
+            contact.Id = Guid.NewGuid();
+            contact.FullName = FullName;
+            return this;
+        }
+
+        public FluentContact BornOf(DateTime DateOfBirth)
+        {
+            contact.DateOfBirth = Convert.ToDateTime(DateOfBirth);
+            return this;
+        }
+
+        public FluentContact DeveloperOf(string developer)
+        {
+            contact.Developer = developer;
+            return this;
+        }
+
+        public FluentContact Salery(float salery)
+        {
+            contact.Gehalt = salery;
+            return this;
+        }
+
+        public FluentContact StateOf(bool state)
+        {
+            contact.Status = state;
+            return this;
+        }
+
+        public void ShowDetails()
+        {
+            Console.WriteLine($"Name: {contact.FullName}, " +
+                $"\nDateOfBirth: {contact.DateOfBirth}, " +
+                $"\nDeveloper: {contact.Developer}, " +
+                $"\nSalery: {contact.Gehalt}, " +
+                $"\nStatus: {contact.Status}");
         }
     }
 }
