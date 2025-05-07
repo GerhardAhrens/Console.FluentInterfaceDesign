@@ -29,8 +29,7 @@ namespace Console.FluentInterfaceDesign
             do
             {
                 Console.Clear();
-                Console.WriteLine("1. Menüpunkt 1");
-                Console.WriteLine("2. Menüpunkt 2");
+                Console.WriteLine("1. Create FluentContact");
                 Console.WriteLine("X. Beenden");
                 Console.WriteLine("Wählen Sie einen Menüpunkt oder 'x' für beenden");
                 ConsoleKey key = Console.ReadKey(true).Key;
@@ -43,10 +42,6 @@ namespace Console.FluentInterfaceDesign
                     if (key == ConsoleKey.D1)
                     {
                         MenuPoint1();
-                    }
-                    else if (key == ConsoleKey.D2)
-                    {
-                        MenuPoint2();
                     }
                 }
             }
@@ -65,14 +60,6 @@ namespace Console.FluentInterfaceDesign
                     .Salery(5000)
                     .StateOf(true);
             obj.ShowDetails();
-
-            Console.WriteLine("Mit einer beliebigen Taste zurück zum Menü!");
-            Console.ReadKey();
-        }
-
-        private static void MenuPoint2()
-        {
-            Console.Clear();
 
             Console.WriteLine("Mit einer beliebigen Taste zurück zum Menü!");
             Console.ReadKey();

@@ -9,3 +9,14 @@ Das Fluent Interface Design Pattern in C# ist eine Methode für den Entwurf objek
 
 **Method Chaining:** Jede Methode gibt eine Instanz des Objekts selbst zurück, in der Regel dieses, was die Verkettung mehrerer Methodenaufrufe in einer einzigen Anweisung ermöglicht.
 
+  ```csharp
+    FluentContact obj = new FluentContact();
+
+    obj.NameOfTheContact("Gerhard Ahrens")
+            .BornOf(new DateTime(1960,6,28))
+            .DeveloperOf("C#")
+            .Salery(5500.96)
+            .StateOf(true);
+    obj.ShowDetails();
+  ```
+
